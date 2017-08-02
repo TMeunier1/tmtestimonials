@@ -29,6 +29,7 @@ class TmTestimonials extends Module {
 
         if (!parent::install()
         || !$this->installdb()
+        || !$this->menutab()
         ) {
             return false;
         }
@@ -49,10 +50,28 @@ class TmTestimonials extends Module {
             ');
     }
 
+    public function menutab()
+    {
+        $parent_tab = new Tab();
+        $parent_tab->name[$this->context->language->id] = $this->l('Testicule');
+        $parent_tab->class_name = 'AdminTmTestimonials';
+        $parent_tab->id_parent = 0; // Home tab
+        $parent_tab->module = $this->name;
+        $parent_tab->add();
+        return $parent_tab;
+    }
+
     public function uninstalldb()
     {
 
         return Db::getInstance()->Execute('DROP TABLE '._DB_PREFIX_.'testimonials');
+    }
+
+    public function uninstallmenutab()
+    {
+        $tab = new Tab((int)Tab::getIdFromClassName('AdminTmTestimonials'));
+        $tab->delete();
+        return $tab;
     }
 
     public function uninstall()
@@ -60,6 +79,7 @@ class TmTestimonials extends Module {
 
         if (!parent::uninstall()
         || !$this->uninstalldb()
+        || !$this->uninstallmenutab()
         ) {
             return false;
         }
