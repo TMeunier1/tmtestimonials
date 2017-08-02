@@ -28,7 +28,7 @@ class TmTestimonials extends Module {
         }
 
         if (!parent::install()
-
+        || !$this->installdb()
         ) {
             return false;
         }
@@ -36,12 +36,30 @@ class TmTestimonials extends Module {
         return true;
     }
 
+    public function installdb()
+    {
+        return Db::getInstance()->Execute('
+        CREATE TABLE IF NOT EXISTS '._DB_PREFIX_.'testimonials (
+            `id_testimonial` int(11) NOT NULL AUTO_INCREMENT,
+            `title`  char(100) NOT NULL,
+            `author` char(100) NOT NULL,
+            `body` text NOT NULL,
+            PRIMARY KEY (`id_testimonial`)
+            ) ENGINE= '._MYSQL_ENGINE_.'  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ');
+    }
+
+    public function uninstalldb()
+    {
+
+        return Db::getInstance()->Execute('DROP TABLE '._DB_PREFIX_.'testimonials');
+    }
 
     public function uninstall()
     {
 
         if (!parent::uninstall()
-
+        || !$this->uninstalldb()
         ) {
             return false;
         }
