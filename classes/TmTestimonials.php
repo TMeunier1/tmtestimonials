@@ -41,11 +41,11 @@ class TmTestimonials extends Module {
     {
         return Db::getInstance()->Execute('
         CREATE TABLE IF NOT EXISTS '._DB_PREFIX_.'testimonials (
-            `id_testimonial` int(11) NOT NULL AUTO_INCREMENT,
+            `id_testimonials` int(11) NOT NULL AUTO_INCREMENT,
             `title`  char(100) NOT NULL,
             `author` char(100) NOT NULL,
             `body` text NOT NULL,
-            PRIMARY KEY (`id_testimonial`)
+            PRIMARY KEY (`id_testimonials`)
             ) ENGINE= '._MYSQL_ENGINE_.'  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ');
     }
@@ -53,7 +53,7 @@ class TmTestimonials extends Module {
     public function menutab()
     {
         $parent_tab = new Tab();
-        $parent_tab->name[$this->context->language->id] = $this->l('Testicule');
+        $parent_tab->name[$this->context->language->id] = $this->l('Testimonial');
         $parent_tab->class_name = 'AdminTmTestimonials';
         $parent_tab->id_parent = 0; // Home tab
         $parent_tab->module = $this->name;
