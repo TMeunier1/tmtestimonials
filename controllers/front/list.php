@@ -7,7 +7,14 @@ class TmTestimonialsListModuleFrontController extends ModuleFrontController
         parent::initContent();
         $this->setTemplate('list.tpl');
         $result = $this->get_testimonials();
-        $this->context->smarty->assign("testimonials", $result);
+        foreach ($result as $testimonial) {
+            $testimonial["link"] = $this->context->link->getModuleLink('tmtestimonials', 'detail',
+            array(
+                'id' => $testimonial["id_testimonials"]
+            ));
+            $testimonial_detail[] = $testimonial;
+        }
+        $this->context->smarty->assign("testimonials", $testimonial_detail);
     }
 
     public function get_testimonials()
