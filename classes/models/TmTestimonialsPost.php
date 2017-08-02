@@ -16,5 +16,4 @@ class TmTestimonialsPost extends ObjectModel
             'body' => array('type' => self::TYPE_STRING, 'validate' => 'isString')
         ),
     );
-
 }

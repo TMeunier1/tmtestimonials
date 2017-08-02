@@ -18,5 +18,4 @@ class TmTestimonialsDetailModuleFrontController extends ModuleFrontController
         return Db::getInstance()->executeS($testimonials);
 
     }
-
 }

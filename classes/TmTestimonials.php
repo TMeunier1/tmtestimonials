@@ -1,6 +1,7 @@
 <?php
 
-class TmTestimonials extends Module {
+class TmTestimonials extends Module
+{
 
     public function __construct()
     {
@@ -28,8 +29,8 @@ class TmTestimonials extends Module {
         }
 
         if (!parent::install()
-        || !$this->installdb()
-        || !$this->menutab()
+            || !$this->installdb()
+            || !$this->menutab()
         ) {
             return false;
         }
@@ -39,7 +40,8 @@ class TmTestimonials extends Module {
 
     public function installdb()
     {
-        return Db::getInstance()->Execute('
+        return Db::getInstance()->Execute(
+            '
         CREATE TABLE IF NOT EXISTS '._DB_PREFIX_.'testimonials (
             `id_testimonials` int(11) NOT NULL AUTO_INCREMENT,
             `title`  char(100) NOT NULL,
@@ -47,7 +49,8 @@ class TmTestimonials extends Module {
             `body` text NOT NULL,
             PRIMARY KEY (`id_testimonials`)
             ) ENGINE= '._MYSQL_ENGINE_.'  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-            ');
+            '
+        );
     }
 
     public function menutab()
@@ -78,13 +81,11 @@ class TmTestimonials extends Module {
     {
 
         if (!parent::uninstall()
-        || !$this->uninstalldb()
-        || !$this->uninstallmenutab()
+            || !$this->uninstalldb()
+            || !$this->uninstallmenutab()
         ) {
             return false;
-        }
-
-        else {
+        } else {
             return true;
         }
     }

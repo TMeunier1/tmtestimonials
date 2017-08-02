@@ -8,10 +8,13 @@ class TmTestimonialsListModuleFrontController extends ModuleFrontController
         $this->setTemplate('list.tpl');
         $result = $this->get_testimonials();
         foreach ($result as $testimonial) {
-            $testimonial["link"] = $this->context->link->getModuleLink('tmtestimonials', 'detail',
-            array(
+            $testimonial["link"] = $this->context->link->getModuleLink(
+                'tmtestimonials',
+                'detail',
+                array(
                 'id' => $testimonial["id_testimonials"]
-            ));
+                )
+            );
             $testimonial_detail[] = $testimonial;
         }
         $this->context->smarty->assign("testimonials", $testimonial_detail);
@@ -24,5 +27,4 @@ class TmTestimonialsListModuleFrontController extends ModuleFrontController
         $testimonials->from('testimonials');
         return Db::getInstance()->executeS($testimonials);
     }
-
 }

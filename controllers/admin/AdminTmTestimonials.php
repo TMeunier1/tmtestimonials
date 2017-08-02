@@ -1,6 +1,7 @@
 <?php
 
-class AdminTmTestimonialsController extends ModuleAdminController {
+class AdminTmTestimonialsController extends ModuleAdminController
+{
 
     public function __construct()
     {
